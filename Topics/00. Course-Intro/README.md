@@ -14,11 +14,9 @@
 <!-- attr: { id:'', showInPresentation:true, hasScriptWrapper:true } -->
 # Table of Contents
 - [Next steps in Telerik Software Academy](#nextsteps)
-- [Design Patterns Course Program](#hqcprogram)
+- [Design Patterns Course Program](#dpprogram)
 - [Evaluation](#evaluation)
-  - [Exam]()
-- [Resources for the Course](#resources)
-  - [Recommended Books](#recommendedbooks)  
+- [Recommended Books](#books)  
 
 <!-- <img class="slide-image" showInPresentation="true" src="imgs\pic05.png" style="top:29.09%; left:63.62%; width:37.04%; z-index:-1" /> -->
 
@@ -27,8 +25,8 @@
 
 
 <!-- section start -->
-<!-- attr: { id:'nextsteps', class:'slide-section', showInPresentation:true, hasScriptWrapper:true } -->
-<!-- # <a id="nextsteps"></a>Design Patterns -->
+<!-- attr: { class:'slide-section', showInPresentation:true, hasScriptWrapper:true } -->
+<!-- # Design Patterns -->
 
 <!-- <img class="slide-image" showInPresentation="true" src="imgs\pic06.png" style="top:42%; left:31%; width:42.31%; z-index:-1; border: 1px solid white; border-radius: 5px;" /> -->
 
@@ -46,8 +44,8 @@
     - HTML5, DB & SQL, Cloud, Web, Mobile, QA, …
 
 
-<!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
-# What's Coming Next?
+<!-- attr: { id:'nextsteps', showInPresentation:true, hasScriptWrapper:true } -->
+# <a id="nextsteps"></a>What's Coming Next?
 - Design Patterns
   - Final course from the HQC series
   - SOLID, Design Patterns introduction, Creational, Structural, Behavioral, DI & IoC containers
@@ -61,16 +59,16 @@
 
 
 <!-- section start -->
-<!-- attr: { id:'hqcprogram', class:'slide-section', showInPresentation:true, hasScriptWrapper:true } -->
-<!-- # <a id="hqcprogram"></a>Design Patterns <br/> Course Program
+<!-- attr: { class:'slide-section', showInPresentation:true, hasScriptWrapper:true } -->
+<!-- # Design Patterns <br/> Course Program
 ## What Will Be Covered in the Course? -->
 
 <!-- <img class="slide-image" showInPresentation="true" src="imgs\pic08.png" style="top:-8%; left:65%; width:29.97%; z-index:-1" /> -->
 
 
 
-<!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
-# The Course Program
+<!-- attr: { id:'dpprogram', showInPresentation:true, hasScriptWrapper:true } -->
+# <a id="dpprogram"></a>The Course Program
 - Course **Overview**
 - SOLID
 - Design Patterns introduction
@@ -88,7 +86,7 @@
 
 
 <!-- attr: { id:'evaluation', showInPresentation:true, hasScriptWrapper:true } -->
-# <a id="evaluation"></a>HQC – Evaluation
+# <a id="evaluation"></a>Design Patterns – Evaluation
 - Evaluation components
   - **Exam** – **75%**
 	- **Exam evaluation** - **10%**
@@ -164,8 +162,8 @@ Criteria for pass / pass with excellence / fail
 <!-- <img class="slide-image" showInPresentation="true" src="imgs\pic39.png" style="top:11.92%; left:9.79%; width:19.86%; z-index:-1" /> -->
 
 
-<!-- attr: { id:'recommendedbooks', showInPresentation:true, hasScriptWrapper:true } -->
-# <a id="recommendedbooks"></a>Recommended Books
+<!-- attr: { id:'books', showInPresentation:true, hasScriptWrapper:true } -->
+# <a id="books"></a>Recommended Books
 - Dependency Injection in .NET, https://www.manning.com/books/dependency-injection-in-dot-net
 
 This is book is not just enough. This is **THE BOOK**!
