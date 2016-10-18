@@ -14,7 +14,7 @@
 <!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
 # Table of Contents
 - [Singleton](./singleton-pattern)
-- [Lazy initialization](./lazy-init)
+- [Lazy evaluation](./lazy-init)
 - [Simple Factory](./factory)
 - [Factory Method](./factory-method)
 - [Abstract Factory](./abstract-factory)
@@ -135,8 +135,8 @@ public class Logger
 ```
 
 <!-- attr: { class:'slide-section demo', showInPresentation: true, hasScriptWrapper: true } -->
-<!-- # Singleton pattern -->
-## [Demo]()
+<!-- # Singleton pattern
+## [Demo]() -->
 
 
 <!-- attr: { style: 'font-size: 0.8em' } -->
@@ -157,39 +157,53 @@ public class Logger
 <!-- attr: { class: 'slide-section', showInPresentation:true, hasScriptWrapper:true } -->
 # Lazy Initialization
 ## Just-in-time instantiation to improve initial performance
-## TODO
-<!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
-# Lazy Initialization
-- Tactic of delaying the creation of an object, the calculation of a value, or some other expensive process until the first time it is needed
-  - A.k.a. Virtual Proxy or Lazy Load pattern
+
+<!-- attr: { showInPresentation:true, hasScriptWrapper:true, style: 'font-size: 0.8em' } -->
+# Lazy Evaluation
+- Delaying creation of an object, calculation of a value, or other expensive process until the first time it is needed
 - Real-world examples
-  - In ORMs navigation properties are lazy loaded (called dynamic proxies) (N+1)
   - When implementing Singleton
-  - IoC containers
-- In .NET: Lazy<T> (value holder)
+  - IoC containers - lazy dependency injection
+  - `LINQ` in .NET(Query building)
+  - Infinite scrolling in web pages
+  - JavaScript `LiveNodeList`
+  - Lazy script loading in JavaScript clients
+  - Text editor displaying files in directory
+  - In ORMs navigation properties are lazy loaded (called dynamic proxies)
+- In .NET: `Lazy<T>` (value holder)
 
-<!-- <img class="slide-image" showInPresentation="true" src="imgs\pic25.png" style="top:49.37%; left:76.72%; width:26.45%; z-index:-1" /> -->
-
+<!-- attr: { class:'slide-section demo', showInPresentation: true, hasScriptWrapper: true } -->
+<!-- # Lazy Evaluation
+## [Demo]() -->
 
 <!-- section start -->
 <!-- attr: { id:'', class:'slide-section', showInPresentation:true, hasScriptWrapper:true } -->
 <!-- # Simple Factory
-## TODO -->
+## Abstracting complex creation, looser coupling, flexibility -->
 
-
-<!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
 # Simple Factory
-- Encapsulates object creation logic
-  - If we are making specific class selection logic changes, we make them in one place
-  - We can hide complex object creation
-- This is not a real **Pattern**
-  - This is the preparation for the real Pattern
-- It is used quite often
-- Each time we add new type we need to modify the simple factory code
+- **An object for creating other objects**
+    - Function or object responsible for creation of objects that have varying type/class/interface
+    - The created objects implement a common interface
+    - The factory encapsulates the creation logic
+- Simple Factory is widely used
+- It's considered a relatively basic pattern
+
+<!-- attr: { style: 'font-size: 0.8em' } -->
+# Motivation
+- **Factory pattern helps us improve cohesion**
+    - Instead of having all objects create the objects they need themselves, they can now request an instance from the factory
+- **Better abstraction/easier object creation**
+    - Factories encapsulate creation logic - they objects that use factories need not concern themselves with creation detail
+    - Complex creation is hidden from the calling code
+- **Looser coupling and flexibility**
+    - If a change is needed in the creation logic, normally a single change in the creation object/function is enough
+    - If a new type of object is to be created, only the object/function should be changed
 
 
-<!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
-# Simple Factory Demo _Example_
+<!-- attr: { showInPresentation:true, hasScriptWrapper:true, style: 'font-size: 0.8em' } -->
+# Simple Factory
+## The Noob Implementation
 
 ```cs
 // Parameter can be string (e.g. from configuration file)
@@ -208,28 +222,131 @@ public Coffee GetCoffee(CoffeeType coffeeType)
         case CoffeeType.Macchiato:
             return new Coffee(200, 100);
         default:
-            throw new ArgumentException();
+            throw new ArgumentException("Unknown type of coffee!");
     }
 }
 ```
 
+
+# Problems with the above
+- The method returns a concrete class
+    - We're still coupled to it - better option is to return an interface
+- The above implementation is not following the open\closed principle
+    - To add a new type, we need to add a new enumeration value and make changes to the method
+- **Solutions:**
+    - The factory should return abstract type - abstract class or interface
+    - The factory function/method should be overrideable **OR**
+    - The factory should support type registration
+
+<!-- attr: { style: 'font-size: 0.75em', hasScriptWrapper: true } -->
+# Factory with registration in JS
+- Error handling is omitted for clarity
+- Uses dictionary of functions to instantiate objects
+
+```js
+const factory = (function () {
+
+    // creates a dictionary
+    const registeredTypes = Object.create(null); 
+    
+    function register(typeId, providerFunction) {
+        registeredTypes[typeId] = providerFunction;
+    }
+
+    function create(typeId, ...parameters) {
+        return registeredTypes[typeId].apply(null, parameters);
+    }
+
+    return {
+        register,
+        create
+    }
+} ());
+```
+
+<!-- attr: { style: 'font-size: 0.75em', hasScriptWrapper: true } -->
+# Usage
+
+```js
+factory.register('person', 
+        (name, age) => ({ name, age }));
+factory.register('square', 
+        side => { side, area: side * side, perimeter: side * 4 });
+
+console.log(factory.create('person', 'john snow', 20));
+console.log(factory.create('square', 10));
+```
+
+<!-- attr: { style: 'font-size: 0.75em', hasScriptWrapper: true } -->
+# Factory with Reflection
+
+```cs
+public class Factory
+{
+    private static IDictionary<string, Type> registeredTypes 
+                        = new Dictionary<string, Type>();
+
+    public static void Register<T>(string typeId)
+    {
+        var type = typeof(T);
+        if(type.IsAbstract || type.IsInterface)
+            throw new ArgumentException(
+        "Cannot create abstract type " + type.Name);
+
+        registeredTypes.Add(typeId, type);
+    }
+
+    public static T Create<T>(string id, params object[] parameters)
+    {
+        Type typeToCreate;
+        if(!registeredTypes.TryGetValue(id, out typeToCreate))
+            throw new NotSupportedException(
+        "Type with id [" + id + "] is not registered.");
+
+        return (T)Activator.CreateInstance(typeToCreate, parameters);
+    }
+}
+```
+
+# Usage
+
+```cs
+// register Banana type with string id "Banana"
+Factory.Register<Banana>("Banana");
+
+// create a Banana and return it as IFood
+// Banana should implement IFood
+Factory.Create<IFood>("Banana");
+
+// create a banana
+Factory.Create<Banana>("Banana");
+```
+
+
+<!-- attr: { class:'slide-section demo', showInPresentation: true, hasScriptWrapper: true } -->
+<!-- # Simple Factories
+## [Demo]() -->
+
+
 <!-- section start -->
 <!-- attr: { class: 'slide-section', showInPresentation:true, hasScriptWrapper:true } -->
 # Factory Method
-## TODO
+## Reusing functionality and letting subtypes instantiate objects
 
 
-<!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
+<!-- attr: { showInPresentation:true, hasScriptWrapper:true, style: 'font-size: 0.9em' } -->
 # Factory Method
-- Objects are created by separate method(s)
-- Produces objects as normal factory
-  - Adds an interface to the simple factory
-  - Add new factories and classes without breaking Open/Closed Principle
-<!-- <img class="slide-image" showInPresentation="true" src="imgs\pic12.png" style="top:44.08%; left:11.81%; width:83.53%; z-index:-1" /> -->
+- **An interface or base type is defined**
+    - **Object creation is defered to subtypes - they decide which type to create and how to create it**
+- Allows for multiple simple factory implementations
+    - Future changes can be integrated by implementing an interface/inheriting a type without modifying the existing codebase
+- Allows to reuse common functionality with different components
 
 
-<!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
-# Factory Method – _Example_
+
+<!-- attr: { showInPresentation:true, hasScriptWrapper:true, style: 'font-size: 0.8em' } -->
+# Factory Method
+## Document example
 
 ```cs
 abstract class Document
@@ -253,50 +370,138 @@ class Report : Document
 }
 ```
 
+<!-- attr: { showInPresentation:true, hasScriptWrapper:true, style: 'font-size: 0.8em' } -->
+# Factory Method
+## M16 Rifle example
+- Implementing an M16 rifle for a video game:
+
+```cs
+public class M16
+{
+    private Scope scope = new StandardScope();
+    private Camouflage camo = new DesertCamo();
+
+    public double Mass { /* return the mass of the rifle */ }
+
+    public Point2D ShootAtTarget(Point2D targetPosition)
+    {
+        // Very complicated calculation taking account 
+        // of lots of variables such as
+        // scope accuracy and gun weight.
+    }
+}
+```
+
+<!-- attr: { showInPresentation:true, hasScriptWrapper:true, style: 'font-size: 0.9em' } -->
+# A change in requirements
+- The code above is fine at first glance
+- **Consider that case where a stealth night mission in the jungle must be implemented**
+    - We need a rifle with different scope and camo
+    - Copying the code and initializing the fields with other types is clunky, repeats code unnecessary and doesn't a way to reuse existing functionality
+- **We can use a factory method here**
+
+<!-- attr: { showInPresentation:true, hasScriptWrapper:true,style: 'font-size: 0.9em' } -->
+# The `M16` class <br />with Factory Method
+
+```cs
+public abstract class M16
+{
+    private Scope scope = this.CreateScope();
+    private Camouflage camo = this.CreateCamo();
+
+    public double Mass { /* return the mass of the rifle */ }
+
+    public void ShootAtTarget(Point3D targetPosition)
+    {
+        // Very complicated calculation taking account 
+        // of lots of variables such as
+        // scope accuracy and gun weight.
+    }
+
+    // use virtual methods if defaults are needed
+    protected abstract Scope CreateScope();
+    protected abstract Camouflage CreateCamo();
+}
+```
+
+<!-- attr: { style: 'font-size: 0.9em' } -->
+# The `JungleM16` Rifle
+- **Extending the base type lets us reuse functionality with different components**
+    - The different components here are the `scope` and `camouflage` of the gun
+
+```cs
+public class JungleM16 : M16
+{
+    protected override Scope CreateScope()
+    {
+        return new NightVisionScope();
+    }
+
+    protected override CreateCamo()
+    {
+        return new JungleCamo();
+    }
+}
+```
 
 
 <!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
-# Factory Method Demo _Example_
-- Inheritance hierarchy gets deeper with coupling between concrete factories and classes
-<!-- <img class="slide-image" showInPresentation="true" src="imgs\pic13.png" style="top:11.46%; left:3.14%; width:100.18%; z-index:-1" /> -->
+# Factory Method Problems
+- **Factory Method prohibits parallel hierarchies**
+    - Those hierarchies can become coupled
+    - A single change in one of the hierarchies might result in changes in the whole hierarchies
+- **Some good practices**
+    - Avoid deep inheritance chains - they are hard to debug, change and reason about
+    - Composition over inheritance can be applied in some cases to reduce hierarchy depth
 
 <!-- section start -->
 <!-- attr: { class: 'slide-section', showInPresentation:true, hasScriptWrapper:true } -->
 # Abstract Factory
-## TODO
+## Create families of related objects through an abstract interface
 
-<!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
+<!-- attr: { showInPresentation:true, hasScriptWrapper:true, style: 'font-size: 0.85em' } -->
 # Abstract Factory
-- Abstraction in object creation
-  - Create a family of related objects
-- The **Abstract** **Factory** **Pattern** defines interface for creating sets of linked objects
-  - Without knowing their concrete classes
-- Used in systems that are frequently changed
-- Provides flexiblemechanism forreplacement ofdifferent sets
+- **Defines an abstract interface for creation a family of related types of objects**
+    - The created objects are returned as interface types or base types
+    - Multiple factories can implement the abstract interface
+- Example:
+    - An abstract factory for UI elements - windows, scrollbars, buttons, grids
+    - A concrete family of UI elements might be `Material theme elements`, `OSX-like elements`, `Gnome UI style elements`
+    - Different factories create the elements for Windows, OSX and GnomeUI
+    
+<!-- attr: { style: 'font-size: 0.9em' } -->
+# Pros of an Abstract Factory
+- The parts of the application that use the created objects do not know about the concrete classes
+    - Coupling is loose, introducing changes isn't as cumbersome
+- If requirements change and new types of objects must be created, this requires addition of new classes and changes only in the abstract factory
+    - Greater flexibility
+    - Greater testability
+
+
 <!-- <img class="slide-image" showInPresentation="true" src="imgs\pic14.png" style="top:52.01%; left:47.61%; width:55.29%; z-index:-1" /> -->
 
 
-<!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
+<!-- attr: { showInPresentation:true, hasScriptWrapper:true, style: 'font-size: 0.9em' } -->
 # Abstract Factory – _Example_
 
 ```cs
-abstract class ContinentFactory { // AbstractFactory
-   public abstract Herbivore CreateHerbivore();
-   public abstract Carnivore CreateCarnivore();
+interface IContinentFactory { // AbstractFactory
+   Herbivore CreateHerbivore();
+   Carnivore CreateCarnivore();
 }
-class AfricaFactory : ContinentFactory {
-   public override Herbivore CreateHerbivore() {
-      return new Wildebeest();
+class AfricaFactory : IContinentFactory {
+   public Herbivore CreateHerbivore() {
+      return new Wildbeаst();
    }
-   public override Carnivore CreateCarnivore() {
+   public Carnivore CreateCarnivore() {
       return new Lion(); // Constructor can be internal
    }
 }
-class AmericaFactory : ContinentFactory {
-    public override Herbivore CreateHerbivore() {
+class AmericaFactory : IContinentFactory {
+    public Herbivore CreateHerbivore() {
         return new Bison();
     }
-    public override Carnivore CreateCarnivore() {
+    public Carnivore CreateCarnivore() {
         return new Wolf();
     }
 }
@@ -305,7 +510,7 @@ class AmericaFactory : ContinentFactory {
 
 
 <!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
-# Abstract Factory Demo _Example_
+# Pizza example
 <!-- <img class="slide-image" showInPresentation="true" src="imgs\pic15.png" style="top:12.25%; left:4.46%; width:61.71%; z-index:-1" /> -->
 <!-- <img class="slide-image" showInPresentation="true" src="imgs\pic16.png" style="top:25.57%; left:69.96%; width:36.17%; z-index:-1" /> -->
 <!-- <img class="slide-image" showInPresentation="true" src="imgs\pic17.png" style="top:48.19%; left:26.54%; width:27.33%; z-index:-1" /> -->
@@ -314,7 +519,9 @@ class AmericaFactory : ContinentFactory {
 
 <!-- section start -->
 # Further study
-- TODO
+- Composition over inheritance
+- Lazy evaluation in C# and JavaScript
+- Fluent interfaces
 
 
 
