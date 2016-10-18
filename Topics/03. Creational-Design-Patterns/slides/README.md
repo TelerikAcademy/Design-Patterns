@@ -141,14 +141,11 @@ public class Logger
 
 <!-- attr: { style: 'font-size: 0.8em' } -->
 # Problems with Singletons
-## TODO: need review
 - **Singletons violate the `Single Responsibility` principle** - they are responsible for at least 2 roles: creating themselves and fullfiling their other responsibilities
 - **Use of Singletons might break the `Open/Closed` principle** - if a singleton doesn't allow inheritance, it's not **open**. If it allows inheritance, it no longer enforces the single instance rule.
 
 <!-- attr: { showInPresentation: true, style: 'font-size: 0.8em' } -->
 <!-- # Problems with Singletons -->
-## TODO: need review
-- **Using Singletons in code can break the `Dependency Inversion` principle** - instead of receiving the object as a dependency, the object is from the global context
 - **Singletons can create hard coupling** - directly refering a class/object name inside your code in a lot of places ties you to that class/object
 - **Singletons can make testing harder**, because they often rely on static methods and properties
 
@@ -515,12 +512,16 @@ class AmericaFactory : IContinentFactory {
 <!-- <img class="slide-image" showInPresentation="true" src="imgs\pic16.png" style="top:25.57%; left:69.96%; width:36.17%; z-index:-1" /> -->
 <!-- <img class="slide-image" showInPresentation="true" src="imgs\pic17.png" style="top:48.19%; left:26.54%; width:27.33%; z-index:-1" /> -->
 
+# Problems
+- This pattern can introduce a lot of accidental complexity
+    - Does your application really need an Abstract Factory?
 
 
 <!-- section start -->
 # Further study
 - Composition over inheritance
 - Lazy evaluation in C# and JavaScript
+- Prototype pattern
 - Fluent interfaces
 
 
@@ -541,7 +542,3 @@ class AmericaFactory : IContinentFactory {
     - facebook.com/TelerikAcademy
   - Telerik Software Academy Forums
     - forums.academy.telerik.com
-<!-- <img class="slide-image" showInPresentation="true" src="imgs\pic28.png" style="top:60.37%; left:92.39%; width:13.45%; z-index:-1" /> -->
-<!-- <img class="slide-image" showInPresentation="true" src="imgs\pic29.png" style="top:30.85%; left:68.14%; width:36.30%; z-index:-1" /> -->
-<!-- <img class="slide-image" showInPresentation="true" src="imgs\pic30.png" style="top:46.32%; left:95.14%; width:10.85%; z-index:-1" /> -->
-<!-- <img class="slide-image" showInPresentation="true" src="imgs\pic31.png" style="top:13.00%; left:92.85%; width:13.01%; z-index:-1" /> -->
