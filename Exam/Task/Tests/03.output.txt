@@ -1,0 +1,4 @@
+A new student with name Pesho Petrov, grade Sixth and ID 0 was created.
+A new student with name Gosho Petrov, grade Sixth and ID 1 was created.
+A new teacher with name Gosho Vesheff, subject Math and ID 0 was created.
+Teacher Gosho Vesheff added mark 3 to student Gosho Petrov in Math.

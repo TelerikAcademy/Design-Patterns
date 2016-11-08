@@ -1,0 +1,3 @@
+A new student with name Pesho Peshev, grade Eleventh and ID 0 was created.
+A new student with name Gosho Peshev, grade Ninth and ID 1 was created.
+This student has no marks.

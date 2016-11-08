@@ -1,0 +1,21 @@
+A new student with name Pesho Petrov, grade Sixth and ID 0 was created.
+A new teacher with name Gosho Vesheff, subject Math and ID 0 was created.
+Teacher Gosho Vesheff added mark 3 to student Pesho Petrov in Math.
+Teacher Gosho Vesheff added mark 2 to student Pesho Petrov in Math.
+A new teacher with name Stamat Shop, subject English and ID 1 was created.
+A new student with name Gosho Petrov, grade Sixth and ID 1 was created.
+Teacher Stamat Shop added mark 5 to student Gosho Petrov in English.
+Teacher Stamat Shop added mark 4 to student Gosho Petrov in English.
+Teacher Stamat Shop added mark 3 to student Pesho Petrov in English.
+The student has these marks:
+Math => 3
+Math => 2
+English => 3
+
+Student with ID 0 was sucessfully removed.
+The given key was not present in the dictionary.
+The student has these marks:
+English => 5
+English => 4
+
+Teacher with ID 1 was sucessfully removed.

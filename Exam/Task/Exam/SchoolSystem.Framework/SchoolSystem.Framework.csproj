@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8CEC5A9-940A-468B-9892-693A3DC97AB1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SchoolSystem.Framework</RootNamespace>
+    <AssemblyName>SchoolSystem.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Commands\Contracts\ICommand.cs" />
+    <Compile Include="Core\Commands\CreateStudentCommand.cs" />
+    <Compile Include="Core\Commands\CreateTeacherCommand.cs" />
+    <Compile Include="Core\Commands\RemoveStudentCommand.cs" />
+    <Compile Include="Core\Commands\RemoveTeacherCommand.cs" />
+    <Compile Include="Core\Commands\StudentListMarksCommand.cs" />
+    <Compile Include="Core\Commands\TeacherAddMarkCommand.cs" />
+    <Compile Include="Core\Contracts\IParser.cs" />
+    <Compile Include="Core\Contracts\IReader.cs" />
+    <Compile Include="Core\Contracts\IWriter.cs" />
+    <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\Providers\CommandParserProvider.cs" />
+    <Compile Include="Core\Providers\ConsoleReaderProvider.cs" />
+    <Compile Include="Core\Providers\ConsoleWriterProvider.cs" />
+    <Compile Include="Models\Abstractions\Person.cs" />
+    <Compile Include="Models\Contracts\IMark.cs" />
+    <Compile Include="Models\Contracts\IPerson.cs" />
+    <Compile Include="Models\Contracts\IStudent.cs" />
+    <Compile Include="Models\Contracts\ITeacher.cs" />
+    <Compile Include="Models\Enums\Grade.cs" />
+    <Compile Include="Models\Enums\Subject.cs" />
+    <Compile Include="Models\Mark.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
