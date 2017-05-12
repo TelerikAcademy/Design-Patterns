@@ -48,7 +48,7 @@
 # <a id="nextsteps"></a>What's Coming Next?
 - Design Patterns
   - Final course from the HQC series
-  - SOLID, Design Patterns introduction, Creational, Structural, Behavioral, DI & IoC containers
+  - SOLID, DI & IoC containers
   - Lectures twice a week
 - The course exam?
   - Exam
@@ -71,11 +71,10 @@
 # <a id="dpprogram"></a>The Course Program
 - Course **Overview**
 - SOLID
-- Design Patterns introduction
-- Creational
-- Structural
-- Behavioral
-- DI & IoC containers
+- DI & IoC containers overview
+- DI patterns
+- DI anti-patterns & refactorings
+- Object composition, object lifetime & interception
 
 
 <!-- section start -->
@@ -88,10 +87,8 @@
 <!-- attr: { id:'evaluation', showInPresentation:true, hasScriptWrapper:true } -->
 # <a id="evaluation"></a>Design Patterns – Evaluation
 - Evaluation components
-  - **Exam** – **75%**
-	- **Exam evaluation** - **10%**
-  - **Homework** – **5%**
-    - Homework **evaluation** – **5%**
+  - **Exam** – **80%**
+	- **Exam evaluation** - **15%**
   - **Attendance** in class – **5%** (5 lectures)
 
 
@@ -127,29 +124,6 @@ Criteria for pass / pass with excellence / fail
   - Check in **+/-** 30 min **before/after** lecture starts
 
 
-<!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
-# Homework Assignments
-- Doing your homework is very important!
-  - Programming can only be learned through **a lot of practice**!
-- Homework assignments due **1 week after each lecture** – no excuses for being late
-  - Deadlines are final & enforced by the system
-- Submit homework through telerikacademy.com
-
-
-<!-- attr: { showInPresentation:true, hasScriptWrapper:true } -->
-# Homework Peer Reviews
-- Everyone will **get feedback** for their homework
-- Everyone will **give feedback** for few random homework submissions
-  - Students submit homework **anonymously**
-    - Please exclude your name from the submissions!
-  - For each homework submitted
-    - Students **evaluate 3 random homeworks**
-    - From the same topic, after the deadline
-    - Give written feedback, at least 200 characters
-    - Low-quality feedback &rarr; report for punishment
-
-
-
 <!-- section start -->
 <!-- attr: { id:'resources', class:'slide-section', showInPresentation:true, hasScriptWrapper:true } -->
 <!-- # <a id="resources"></a>Resources -->
@@ -166,7 +140,7 @@ Criteria for pass / pass with excellence / fail
 # <a id="books"></a>Recommended Books
 - Dependency Injection in .NET, https://www.manning.com/books/dependency-injection-in-dot-net
 
-This is book is not just enough. This is **THE BOOK**!
+This book is not just enough. This is **THE BOOK**!
 
 <!-- <img class="slide-image" showInPresentation="true" src="imgs\seemann.png" style="top:12%; left:-10%; width:13.22%; z-index:-1" /> -->
 
