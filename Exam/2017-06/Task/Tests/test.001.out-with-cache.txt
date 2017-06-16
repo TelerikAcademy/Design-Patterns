@@ -1,0 +1,19 @@
+Successfully created a new project!
+Name: DeathStar
+  Starting date: 2016-01-01
+  Ending date: 2018-05-04
+  State: Active
+  Users:
+  - This project has no users!
+  Tasks:
+  - This project has no tasks!
+Successfully created a new project!
+Name: DeathStar
+  Starting date: 2016-01-01
+  Ending date: 2018-05-04
+  State: Active
+  Users:
+  - This project has no users!
+  Tasks:
+  - This project has no tasks!
+Program terminated.

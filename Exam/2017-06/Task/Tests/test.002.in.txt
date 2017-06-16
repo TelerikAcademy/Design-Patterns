@@ -1,0 +1,4 @@
+CreateProject DeathStar 2016-1-1 2018-05-04 Active
+CreateUser 0 DarthVader sexybeast@darkside.com
+CreateTask 0 0 BuildTheStar Pending
+Exit

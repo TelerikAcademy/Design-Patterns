@@ -1,0 +1,12 @@
+CreateProject DeathStar 2016-1-1 2018-05-04 Active
+CreateUser 0 DarthVader sexybeast@darkside.com
+CreateTask 0 0 BuildTheStar Pending
+CreateTask 0 0 SecureTheVents Pending
+CreateTask 0 0 Dominate InProgress
+CreateProject DeathStar2 2016-1-1 2018-05-04 Active
+CreateUser 1 DarthVader sexybeast@darkside.com
+CreateTask 1 0 BuildTheStar Pending
+CreateTask 1 0 SecureTheVents Pending
+CreateTask 1 0 Dominate InProgress
+ListProjects
+Exit

@@ -88,7 +88,7 @@ namespace ConsoleWebServer.Application
                 {
                     List<IParameter> contextParams = context.Parameters.ToList();
                     return context.Kernel.Get<IActionResult>(ActionResultWithCorsName, contextParams[2],
-                        new ConstructorArgument(ActionResultConstructorArgument, context.Kernel.Get<IActionResult>(ContentActionResultWithNoCachingName, contextParams[0], contextParams[1])));
+                        new ConstructorArgument(context.Kernel.Get<IActionResult>(ContentActionResultWithNoCachingName, contextParams[0], contextParams[1])));
                 }).NamedLikeFactoryMethod((IActionResultFactory actionResultFactory) => actionResultFactory.GetContentActionResultWithCorsAndNoCaching(null, null, null));
 
             Bind<Func<IHttpRequest, Controller>>()

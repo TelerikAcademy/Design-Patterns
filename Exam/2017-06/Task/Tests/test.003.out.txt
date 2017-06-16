@@ -1,0 +1,49 @@
+Successfully created a new project!
+Successfully created a new user!
+Successfully created a new task!
+Successfully created a new task!
+Successfully created a new task!
+Successfully created a new project!
+Successfully created a new user!
+Successfully created a new task!
+Successfully created a new task!
+Successfully created a new task!
+Name: DeathStar
+  Starting date: 2016-01-01
+  Ending date: 2018-05-04
+  State: Active
+  Users:
+    Username: DarthVader
+    Email: sexybeast@darkside.com
+  Tasks:
+    Name: BuildTheStar
+    Owner: DarthVader
+    State: Pending
+  -------------
+    Name: SecureTheVents
+    Owner: DarthVader
+    State: Pending
+  -------------
+    Name: Dominate
+    Owner: DarthVader
+    State: InProgress
+Name: DeathStar2
+  Starting date: 2016-01-01
+  Ending date: 2018-05-04
+  State: Active
+  Users:
+    Username: DarthVader
+    Email: sexybeast@darkside.com
+  Tasks:
+    Name: BuildTheStar
+    Owner: DarthVader
+    State: Pending
+  -------------
+    Name: SecureTheVents
+    Owner: DarthVader
+    State: Pending
+  -------------
+    Name: Dominate
+    Owner: DarthVader
+    State: InProgress
+Program terminated.
