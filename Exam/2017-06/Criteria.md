@@ -13,7 +13,7 @@ Part 1: Refactoring (35 points)
     - Yes (1 point)
     - No (0 point)
 
-3. Engine class receives ILogger (interface) instead of FileLogger (concrete class).
+3. Engine class receives ILogger (interface) instead of FileLogger (concrete class) or the ILogger is removed due to the use of ILoggerInterceptor.
     - Yes (1 point)
     - No (0 point)
 
@@ -149,7 +149,7 @@ Part 2: Unit Testing (30 points)
     - Yes (2 point)
     - No (0 point)
 
-12. LogErrorInterceptor Tests: Intercept when throws Exception calls logger.Fatal() and writer.WriteLine() once.
+12. LogErrorInterceptor Tests: Intercept when throws Exception calls logger.Fatal()/logger.Error() and writer.WriteLine() once.
     - Yes (2 point)
     - No (0 point)
 
